@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-container class="pa-5">
+    <v-container class="pa-2">
       <v-container class="cyan" elevation-3>
         <v-layout  row class="pt-3 pb-5">
            <h1 class="display-2">New Question</h1>
@@ -62,11 +62,12 @@ export default {
           content: this.blogContent
         }
       })
-        .then(loginResponse => {
-          console.log(loginResponse)
+        .then(response => {
+          console.log(response)
           this.blogContent = null
           this.blogTitle = null
           this.$store.commit('getAllQuestions')
+          this.$router.push(`article/${response.data.data._id}`)
         })
         .catch(err => {
           console.log(err)
