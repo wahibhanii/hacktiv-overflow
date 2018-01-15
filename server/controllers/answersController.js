@@ -1,10 +1,12 @@
 const Answer = require('../models/answer')
 const Question = require('../models/question')
+const sendAnsweredNotif = require ('../helper/nodemailer')
 
 class AnswersController {
 
   static createAnswer (req, res) {
     let answerId
+    let question
     // console.log(req.body,'=======================',(req.body.content!==undefined))
     if (req.body.content!==undefined){
       let newAnswer = {
@@ -16,24 +18,30 @@ class AnswersController {
         createdAt: new Date(),
         updatedAt: null,
       }
+      let notifInfo={}
+      notifInfo.answerContent = newAnswer.content
+      notifInfo.answerer = req.headers.decoded
       // console.log(newAnswer)
       Answer.create(newAnswer)
       .then(result => {
-        // console.log(result)
+        console.log(result,'---------------===============')
         answerId = result._id
         return Question.findOne({_id: req.body.questionId})
       })
       .then(dataQuestion => {
-        console.log(typeof answerId,'<<<<<')
+        console.log(dataQuestion,'cccccccccxxxxx')
         dataQuestion.answers.push(answerId)
-        console.log(dataQuestion,'>>>>>>>>')
-        return Question.findOneAndUpdate({_id: dataQuestion._id}, dataQuestion,{new: true})
+        return Question.findOneAndUpdate({_id: dataQuestion._id}, dataQuestion,{new: true}).populate('author')
       })
       .then(updateResult => {
         console.log(updateResult);
+        notifInfo.question = updateResult
+        sendAnsweredNotif(notifInfo)
+        console.log('_+-=-=-==-=-=', notifInfo)
         res.status(200).json({
           message : 'Create answer successful!',
-          data    : updateResult
+          data    : updateResult,
+          notifinfo: notifInfo
         })
       })
       .catch(err => {

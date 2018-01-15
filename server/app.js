@@ -7,6 +7,7 @@ const cookieParser  = require  ('cookie-parser');
 const bodyParser    = require  ('body-parser');
 const mongoose      = require  ('mongoose')
 const cors          = require('cors');
+const kue           = require( 'kue' );
 
 const index = require  ('./routes/index');
 const users = require  ('./routes/users');
@@ -15,12 +16,14 @@ const answers = require ('./routes/answers')
 
 const app = express();
 app.use(cors())
+kue.app.listen( 3004 );
+console.log( 'UI started on port 3004' );
 
 
 // Mongo DB with Atlas Server
 const dbName = 'hacktiv-overflow';
 const atlasdbURL  = `mongodb://wahibhacktiv8:${process.env.DB_PASSWORD}@wahib-hacktiv8-shard-00-00-uyl7c.mongodb.net:27017,wahib-hacktiv8-shard-00-01-uyl7c.mongodb.net:27017,wahib-hacktiv8-shard-00-02-uyl7c.mongodb.net:27017/${dbName}?ssl=true&replicaSet=wahib-hacktiv8-shard-0&authSource=admin`;
-mongoose.connect(atlasdbURL,{ useMongoClient: true });
+mongoose.connect(atlasdbURL);
 mongoose.Promise = global.Promise;
 
 
