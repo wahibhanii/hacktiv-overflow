@@ -14,7 +14,6 @@ const mutations = {
   },
 
   getAllQuestions () {
-    console.log('getting all props')
     if (this.state.isSearch) {
       // console.log('with search', this.state.searchField)
       // axios({

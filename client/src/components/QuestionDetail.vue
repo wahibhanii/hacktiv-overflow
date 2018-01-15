@@ -38,13 +38,13 @@
           <v-btn icon small flat color="blue" @click="upvoteQuestion">
             <v-badge overlay small left bottom color="green" >
               <span slot="badge" dark>{{question.upvoters.length}}</span>
-              <v-icon flat small icon color="blue">thumb_up</v-icon>
+              <v-icon flat small icon :color="isQuestionUpvoting">thumb_up</v-icon>
             </v-badge>
           </v-btn>
           <v-btn icon small flat color="blue" @click="downvoteQuestion" >
             <v-badge overlay small right bottom color="green" >
               <span slot="badge" dark>{{question.downvoters.length}}</span>
-              <v-icon flat small icon color="blue">thumb_down</v-icon>
+              <v-icon flat small icon :color="isQuestionDownvoting">thumb_down</v-icon>
             </v-badge>
           </v-btn>
         </v-layout>
@@ -183,6 +183,28 @@ export default {
     },
     isAdmin () {
       return this.$store.state.isAdmin
+    },
+    isQuestionUpvoting () {
+      let userId = jwt.decode(localStorage.token)._id
+      let isIdMatch = this.question.upvoters.find(user => {
+        return user === userId
+      })
+      if (isIdMatch !== undefined) {
+        return 'blue'
+      } else {
+        return 'grey'
+      }
+    },
+    isQuestionDownvoting () {
+      let userId = jwt.decode(localStorage.token)._id
+      let isIdMatch = this.question.downvoters.find(user => {
+        return user === userId
+      })
+      if (isIdMatch !== undefined) {
+        return 'blue'
+      } else {
+        return 'grey'
+      }
     }
   },
   created () {

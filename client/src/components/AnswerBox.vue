@@ -17,13 +17,13 @@
     <v-btn icon small flat color="blue" @click="upvoteAnswer">
       <v-badge overlay small left bottom color="green" >
         <span slot="badge" dark>{{answer.upvoters.length}}</span>
-        <v-icon flat small icon color="blue">thumb_up</v-icon>
+        <v-icon flat small icon :color="isAnswerUpvoting">thumb_up</v-icon>
       </v-badge>
     </v-btn>
     <v-btn icon small flat color="blue" @click="downvoteAnswer" >
       <v-badge overlay small right bottom color="green" >
         <span slot="badge" dark>{{answer.downvoters.length}}</span>
-        <v-icon flat small icon color="blue">thumb_down</v-icon>
+        <v-icon flat small icon :color="isAnswerDownvoting">thumb_down</v-icon>
       </v-badge>
     </v-btn>
   </v-layout>
@@ -95,6 +95,28 @@ export default {
     isUserAuth () {
       let userId = jwt.decode(localStorage.token)._id
       return ((userId === this.answer.author._id) || this.$store.state.isAdmin)
+    },
+    isAnswerUpvoting () {
+      let userId = jwt.decode(localStorage.token)._id
+      let isIdMatch = this.answer.upvoters.find(user => {
+        return user === userId
+      })
+      if (isIdMatch !== undefined) {
+        return 'blue'
+      } else {
+        return 'grey'
+      }
+    },
+    isAnswerDownvoting () {
+      let userId = jwt.decode(localStorage.token)._id
+      let isIdMatch = this.answer.downvoters.find(user => {
+        return user === userId
+      })
+      if (isIdMatch !== undefined) {
+        return 'blue'
+      } else {
+        return 'grey'
+      }
     }
   }
 }
