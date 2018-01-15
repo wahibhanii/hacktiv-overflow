@@ -123,6 +123,68 @@ class AnswersController {
     })
   }
 
+  static upvote (req, res) {
+    let answerId = req.params.id
+    let userId = req.headers.decoded._id
+    Answer.findOne({_id: answerId})
+    .then (dataAnswer => {
+      console.log(dataAnswer, userId)
+      if (dataAnswer.downvoters.indexOf(userId) !== -1) {
+        console.log('removing downvote')
+        dataAnswer.downvoters.splice(dataAnswer.downvoters.indexOf(userId),1);
+      }
+      console.log('>>>>>>>>',dataAnswer.upvoters.indexOf(userId) )
+      if (dataAnswer.upvoters.indexOf(userId) === -1){
+        dataAnswer.upvoters.push(userId)
+      } else {
+        dataAnswer.upvoters.splice(dataAnswer.upvoters.indexOf(userId),1);
+      }
+      return Answer.findOneAndUpdate({_id: answerId}, dataAnswer, {new: true})
+    })
+    .then (updateResult => {
+      console.log(updateResult)
+      res.status(200).json({
+        message: 'Answer upvote/unupvote done',
+        data: updateResult
+      })
+    })
+    .catch (err => {
+      console.log(err)
+      res.status(500).send(err)
+    })
+  }
+
+  static downvote (req, res) {
+    let answerId = req.params.id
+    let userId = req.headers.decoded._id
+    Answer.findOne({_id: answerId})
+    .then (dataAnswer => {
+      console.log(dataAnswer, userId)
+      if (dataAnswer.upvoters.indexOf(userId) !== -1) {
+        console.log('removing downvote')
+        dataAnswer.upvoters.splice(dataAnswer.upvoters.indexOf(userId),1);
+      }
+      console.log('>>>>>>>>',dataAnswer.downvoters.indexOf(userId) )
+      if (dataAnswer.downvoters.indexOf(userId) === -1){
+        dataAnswer.downvoters.push(userId)
+      } else {
+        dataAnswer.downvoters.splice(dataAnswer.downvoters.indexOf(userId),1);
+      }
+      return Answer.findOneAndUpdate({_id: answerId}, dataAnswer, {new: true})
+    })
+    .then (updateResult => {
+      console.log(updateResult)
+      res.status(200).json({
+        message: 'Answer downvote/undownvote done',
+        data: updateResult
+      })
+    })
+    .catch (err => {
+      console.log(err)
+      res.status(500).send(err)
+    })
+  }
+
 }
 
 module.exports = AnswersController

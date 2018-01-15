@@ -22,4 +22,10 @@ router.put('/:id', authentication, QuestionsController.updateQuestion);
 // delete question
 router.delete('/:id', authentication, QuestionsController.deleteQuestion);
 
+// Upvote answer
+router.put('/:id/upvote', authentication, QuestionsController.upvote);
+
+// Upvote answer
+router.put('/:id/downvote', authentication, QuestionsController.downvote);
+
 module.exports = router;

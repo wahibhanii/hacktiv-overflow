@@ -7,6 +7,8 @@ const questionSchema = new Schema({
   content  : String,
   createdAt: Date,
   updatedAt: Date,
+  upvoters: [{type: Schema.Types.ObjectId, ref: 'User'}],
+  downvoters: [{type: Schema.Types.ObjectId, ref: 'User'}],
   answers  : [{type: Schema.Types.ObjectId, ref: 'Answer'}],
   author   : {type: Schema.Types.ObjectId, ref: 'User'},
 });
