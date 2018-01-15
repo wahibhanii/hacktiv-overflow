@@ -18,9 +18,9 @@ app.use(cors())
 
 
 // Mongo DB with Atlas Server
-// const dbName = 'blogtdd';
-const atlasdbURL  = `mongodb://localhost:27017/devblog`;
-mongoose.connect(atlasdbURL);
+const dbName = 'hacktiv-overflow';
+const atlasdbURL  = `mongodb://wahibhacktiv8:${process.env.DB_PASSWORD}@wahib-hacktiv8-shard-00-00-uyl7c.mongodb.net:27017,wahib-hacktiv8-shard-00-01-uyl7c.mongodb.net:27017,wahib-hacktiv8-shard-00-02-uyl7c.mongodb.net:27017/${dbName}?ssl=true&replicaSet=wahib-hacktiv8-shard-0&authSource=admin`;
+mongoose.connect(atlasdbURL,{ useMongoClient: true });
 mongoose.Promise = global.Promise;
 
 
