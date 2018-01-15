@@ -69,10 +69,11 @@ export default {
       })
         .then(loginResponse => {
           if (loginResponse.status === 200) {
+            localStorage.setItem('token', loginResponse.data.token)
+            this.$store.commit('getAllQuestions')
             this.email = null
             this.password = null
             this.failMessage = null
-            localStorage.setItem('token', loginResponse.data.token)
             this.$store.state.isLoggedIn = true
             this.$store.state.loginDialog = false
           } else if (loginResponse.status === 202) {
