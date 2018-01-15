@@ -2,7 +2,7 @@
   <v-toolbar fixed :clipped-left="true" dark color="orange" app>
     <v-toolbar-side-icon @click="drawerAction"></v-toolbar-side-icon>
     <v-toolbar-title class="white--text" > 
-      <v-icon>book</v-icon>
+      <v-icon>question_answer</v-icon>
       <span class="white--text hidden-xs-only">HackFLow</span>
     </v-toolbar-title>
     <v-toolbar-title class="white--text" > 

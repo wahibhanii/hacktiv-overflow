@@ -1,20 +1,32 @@
 <template>
-  <v-container fluid elevation-3 white pa-2>
-    <v-layout justify-space-between>
-      <v-flex>
-        <v-layout>
-          <span class="title">{{answer.author.userName}} :</span>
-        </v-layout>
-        <v-layout class="pt-2">
-          <span class="subheading"> {{answer.content}}</span>
-        </v-layout>
-      </v-flex>
-      <v-btn flat color="red" @click="deleteAnswer" v-if="isUserAuth">
-        Delete answer
-      </v-btn>
-  
-    </v-layout>
-    
+  <v-container fluid elevation-2>
+  <v-layout justify-space-between class="white pa-2" >
+    <v-flex>
+      <v-layout>
+        <span class="subheading">{{answer.author.userName}} :</span>
+      </v-layout>
+      <v-layout class="pt">
+        <span class=""> {{answer.content}}</span>
+      </v-layout>
+    </v-flex>
+    <v-btn icon small flat color="red" @click="deleteAnswer" v-if="isUserAuth">
+      <v-icon flat small icon color="red">delete</v-icon>
+    </v-btn>
+  </v-layout>
+  <v-layout justify-space-around>
+    <v-btn icon small flat color="blue" @click="upvoteAnswer">
+      <v-badge overlay small left bottom color="green" >
+        <span slot="badge" dark>{{answer.upvoters.length}}</span>
+        <v-icon flat small icon color="blue">thumb_up</v-icon>
+      </v-badge>
+    </v-btn>
+    <v-btn icon small flat color="blue" @click="downvoteAnswer" >
+      <v-badge overlay small right bottom color="green" >
+        <span slot="badge" dark>{{answer.downvoters.length}}</span>
+        <v-icon flat small icon color="blue">thumb_down</v-icon>
+      </v-badge>
+    </v-btn>
+  </v-layout>
   </v-container>
 </template>
 
@@ -39,6 +51,40 @@ export default {
           console.log(deleteResponse)
           this.answerContent = null
           this.$emit('deleteAnswer')
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    upvoteAnswer () {
+      console.log('upvoting answer')
+      this.$axios({
+        method: 'put',
+        url: `/answers/${this.answer._id}/upvote`,
+        headers: {
+          token: localStorage.token
+        }
+      })
+        .then(response => {
+          console.log('Upvoted ', response)
+          this.$emit('upvoteAnswer')
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    downvoteAnswer () {
+      'downvoting answer'
+      this.$axios({
+        method: 'put',
+        url: `/answers/${this.answer._id}/downvote`,
+        headers: {
+          token: localStorage.token
+        }
+      })
+        .then(response => {
+          console.log('Downvoted ', response)
+          this.$emit('downvoteAnswer')
         })
         .catch(err => {
           console.log(err)

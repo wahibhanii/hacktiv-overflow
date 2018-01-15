@@ -4,8 +4,8 @@ const state = {
   leftDrawer: false,
   loginDialog: false,
   signupDialog: false,
-  allArticles: null,
-  myArticles: null,
+  allQuestions: null,
+  myQuestions: null,
   isSearch: false,
   searchField: null,
   pageName: null

@@ -1,5 +1,5 @@
 <template>
-  <v-container class="white" elevation-3>
+  <v-container class="white" elevation-3 fluid>
         <v-layout  row class="">
            <h1 class="title">Post New Answer</h1>
         </v-layout>
