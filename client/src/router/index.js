@@ -1,14 +1,23 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
-import HomePage from '@/components/HomePage'
-import WelcomePage from '@/components/WelcomePage'
-import BlogEntries from '@/components/BlogEntries'
-import NewQuestion from '@/components/NewQuestion'
-import AllEntries from '@/components/AllEntries'
-import MyEntries from '@/components/MyEntries'
-import QuestionDetail from '@/components/QuestionDetail'
-import EditQuestion from '@/components/EditQuestion'
+// import HomePage from '@/components/HomePage'
+// import WelcomePage from '@/components/WelcomePage'
+// import BlogEntries from '@/components/BlogEntries'
+// import NewQuestion from '@/components/NewQuestion'
+// import AllEntries from '@/components/AllEntries'
+// import MyEntries from '@/components/MyEntries'
+// import QuestionDetail from '@/components/QuestionDetail'
+// import EditQuestion from '@/components/EditQuestion'
+
+const WelcomePage = () => import(/* webpackChunkName: "group-early" */ '@/components/WelcomePage.vue')
+const HomePage = () => import(/* webpackChunkName: "group-early" */ '@/components/HomePage.vue')
+const BlogEntries = () => import(/* webpackChunkName: "group-late" */ '@/components/BlogEntries.vue')
+const NewQuestion = () => import(/* webpackChunkName: "group-late" */ '@/components/NewQuestion.vue')
+const AllEntries = () => import(/* webpackChunkName: "group-superlate" */ '@/components/AllEntries.vue')
+const MyEntries = () => import(/* webpackChunkName: "group-superlate" */ '@/components/MyEntries.vue')
+const QuestionDetail = () => import(/* webpackChunkName: "group-superlate" */ '@/components/QuestionDetail.vue')
+const EditQuestion = () => import(/* webpackChunkName: "group-superlate" */ '@/components/EditQuestion.vue')
 
 Vue.use(Router)
 

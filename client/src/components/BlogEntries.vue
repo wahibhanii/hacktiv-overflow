@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-tabs grow class="vtab">
+    <v-tabs grow class="switchtab">
       <v-tabs-bar color="cyan darken-1" dark>
         <v-tabs-item
           href="#posts"
@@ -44,8 +44,8 @@ export default {
 }
 </script>
 
-<style>
-.vtab {
+<style scoped>
+.switchtab {
   position: fixed;
   z-index: 10;
 }
