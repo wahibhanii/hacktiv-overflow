@@ -2,7 +2,7 @@
 const nodemailer = require('nodemailer');
 require('dotenv').config()
 const kue = require('kue')
-
+let queue = kue.createQueue();
 
 
 // create reusable transporter object using the default SMTP transport
@@ -18,7 +18,7 @@ let transporter = nodemailer.createTransport({
 
 let sendAnsweredNotif = (notifInfo) => {
   console.log('sending email...')
-  let queue = kue.createQueue();
+  
   // setup email data with unicode symbols
   let mailOptions = {
     from: '"Hack Flow" <hackflow.norther@gmail.com>', // sender address
@@ -400,14 +400,13 @@ let sendAnsweredNotif = (notifInfo) => {
       console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
     });
   }
-
-  queue.process('email', 1, function (job, done) {
-    
-    email(mailOptions, done);
+  queue.process('email', 1, function (job, ctx, done) {
+    setTimeout(() => {
+      email(mailOptions, done)
+    }, 60000)
   });
 
-
-
-
 }
+
+
 module.exports = sendAnsweredNotif

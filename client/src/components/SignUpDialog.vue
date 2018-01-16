@@ -9,7 +9,7 @@
         </v-card-title>
         <v-card-text>
           <v-container grid-list-md>
-              <v-form v-model="valid">
+              <v-form v-model.lazy="valid">
                 <v-flex xs12>
                   <v-text-field label="Email" required v-model="email" :rules="emailRules"></v-text-field>
                 </v-flex>
@@ -51,8 +51,10 @@ export default {
       userName: null,
       email: null,
       emailRules: [
-        (v) => !!v || 'E-mail is required'
-        // (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+        (v) => !!v || 'E-mail is required',
+        /* eslint-disable */
+        (v) => /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/.test(v) || 'E-mail must be valid'
+        /* eslint-enable */
       ],
       password: null,
       passwordConf: null,

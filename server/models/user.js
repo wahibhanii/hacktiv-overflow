@@ -1,5 +1,6 @@
 'use strict'
 const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
@@ -11,11 +12,13 @@ const userSchema = new Schema({
       },
       message: '{VALUE} is not a valid email!'
     },
-    required: [true, 'User E-mail required']
+    required: [true, 'User E-mail required'],
+    unique: true
   },
   password    : String,
   userName    : String,
 });
+userSchema.plugin(uniqueValidator);
 
 const User = mongoose.model('User', userSchema);
 

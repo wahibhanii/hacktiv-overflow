@@ -15,7 +15,6 @@ class UserController {
         userName    : req.body.userName,
         password    : bcrypt.hashSync(req.body.password, salt),
       }
-      console.log('pass================')
       User.findOne({email: req.body.email})
       .then(userResult => {
         console.log(userResult)
