@@ -24,20 +24,22 @@ class AnswersController {
       // console.log(newAnswer)
       Answer.create(newAnswer)
       .then(result => {
-        console.log(result,'---------------===============')
+        // console.log(result,'---------------===============')
         answerId = result._id
+        console.log('amswerID >>>> ', answerId)
         return Question.findOne({_id: req.body.questionId})
       })
       .then(dataQuestion => {
-        console.log(dataQuestion,'cccccccccxxxxx')
+        console.log(dataQuestion.answers,'cccccccccxxxxx')
         dataQuestion.answers.push(answerId)
+        console.log(dataQuestion.answers,'cccccccccxxxxx======================', dataQuestion._id)
         return Question.findOneAndUpdate({_id: dataQuestion._id}, dataQuestion,{new: true}).populate('author')
       })
       .then(updateResult => {
         console.log(updateResult);
         notifInfo.question = updateResult
         sendAnsweredNotif(notifInfo)
-        console.log('_+-=-=-==-=-=', notifInfo)
+        // console.log('_+-=-=-==-=-=', notifInfo)
         res.status(200).json({
           message : 'Create answer successful!',
           data    : updateResult,
