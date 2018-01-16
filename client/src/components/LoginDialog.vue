@@ -14,7 +14,7 @@
                   <v-text-field label="Email" required v-model="email" :rules="emailRules"></v-text-field>
                 </v-flex>
                 <v-flex xs12>
-                  <v-text-field label="Password" type="password" required v-model="password"></v-text-field>
+                  <v-text-field label="Password" type="password" required v-model="password" :rules="passwordRules"></v-text-field>
                 </v-flex>
               </v-form>
           </v-container>
