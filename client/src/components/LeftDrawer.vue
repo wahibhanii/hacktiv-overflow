@@ -4,6 +4,7 @@
     dark
     v-model="leftDrawer" 
     :clipped="true"
+    class="drawer"
     app>
     <v-list class="pt-0" >
       <v-list-tile @click="gotoHome">
@@ -66,3 +67,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.drawer{
+  z-index: 15;
+}
+</style>

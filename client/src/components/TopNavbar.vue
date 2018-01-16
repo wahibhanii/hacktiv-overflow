@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar fixed :clipped-left="true" dark color="orange" app>
+  <v-toolbar fixed :clipped-left="true" dark color="orange" app class="topnav">
     <v-toolbar-side-icon @click="drawerAction"></v-toolbar-side-icon>
     <v-toolbar-title class="white--text" > 
       <v-icon>question_answer</v-icon>
@@ -95,3 +95,10 @@ export default {
   }
 }
 </script>
+
+<style>
+.topnav {
+  z-index: 20;
+}
+</style>
+

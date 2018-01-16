@@ -1,7 +1,6 @@
 <template>
-
   <div>
-    <v-layout wrap>
+    <v-layout wrap justify-center>
       <v-flex v-for="question in allQuestions" :key="question._id" class="pa-3">
         <question-thumbnail :question="question"></question-thumbnail>
       </v-flex>
@@ -30,7 +29,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>

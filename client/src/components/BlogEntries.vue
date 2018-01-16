@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-tabs grow>
+    <v-tabs grow class="vtab">
       <v-tabs-bar color="cyan darken-1" dark>
         <v-tabs-item
           href="#posts"
@@ -19,7 +19,10 @@
         <v-tabs-slider color="yellow" class="pt-1"></v-tabs-slider>
       </v-tabs-bar>
     </v-tabs>
-    <router-view></router-view>
+    <div class="viewPane">
+      <router-view class="scrollable"></router-view>
+    </div>
+    
   </div>
 </template>
 
@@ -42,4 +45,19 @@ export default {
 </script>
 
 <style>
+.vtab {
+  position: fixed;
+  z-index: 10;
+}
+
+.viewPane {
+  /* position: fixed; */
+  padding-top: 12%;
+  overflow: scroll;
+  
+}
+
+.scrollable {
+  overflow: scroll
+}
 </style>
