@@ -63,10 +63,11 @@ export default {
           content: this.blogContent
         }
       })
-        .then(loginResponse => {
+        .then(response => {
           this.blogContent = null
           this.blogTitle = null
           this.$store.commit('getAllQuestions')
+          this.$router.push({name: 'QuestionDetail', params: {id: this.id}})
         })
         .catch(err => {
           console.log(err)

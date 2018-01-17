@@ -65,7 +65,7 @@ export default {
           this.blogContent = null
           this.blogTitle = null
           this.$store.commit('getAllQuestions')
-          this.$router.push(`article/${response.data.data._id}`)
+          this.$router.push({name: 'QuestionDetail', params: {id: response.data.data._id}})
         })
         .catch(err => {
           console.log(err)

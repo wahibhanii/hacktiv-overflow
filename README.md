@@ -1,7 +1,7 @@
-# [Hacktiv Overflow](http:/hackflow.wahibhanii.xyz)
+# [Hacktiv Overflow](https:/hackflow.wahibhanii.xyz)
 
 A Q&amp;A website project
-[hackflow.wahibhanii.xyz](http:/hackflow.wahibhanii.xyz)
+[hackflow.wahibhanii.xyz](https:/hackflow.wahibhanii.xyz)
 ____________________
 ## App Usage 
 
@@ -115,5 +115,5 @@ ____________________
   - `req.headers.token`: contain token from login
   - `req.params.id`: answer's id
 
-Access the website via [hackflow.wahibhanii.xyz](http:/hackflow.wahibhanii.xyz) or API via `https://api.hackflow.wahibhanii.com`
+Access the website via [hackflow.wahibhanii.xyz](https:/hackflow.wahibhanii.xyz) or API via `https://api.hackflow.wahibhanii.com`
 
