@@ -54,7 +54,6 @@ export default {
   },
   methods: {
     drawerAction () {
-      console.log(this.$store.state.leftDrawer)
       this.$store.state.leftDrawer = !this.$store.state.leftDrawer
     },
     openLogin () {

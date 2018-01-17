@@ -22,13 +22,10 @@ export default {
   computed: {
     myQuestions: {
       get () {
-        console.log(this.$store.state.allQuestions)
         let userId = jwt.decode(localStorage.token)._id
         let arrQuestions = this.$store.state.allQuestions.filter(question => {
-          console.log(question.author._id === userId)
           return question.author._id === userId
         })
-        console.log(arrQuestions, '<<<<<<<<<<<')
         return arrQuestions
       }
     }

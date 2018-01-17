@@ -52,7 +52,6 @@ export default {
   props: ['id'],
   methods: {
     postBlog () {
-      console.log('posting blog')
       this.$axios({
         method: 'put',
         url: `/questions/${this.id}`,
@@ -65,7 +64,6 @@ export default {
         }
       })
         .then(loginResponse => {
-          console.log(loginResponse)
           this.blogContent = null
           this.blogTitle = null
           this.$store.commit('getAllQuestions')
@@ -75,17 +73,14 @@ export default {
         })
     },
     getQuestion () {
-      console.log('getting question . . .')
       this.$axios({
         method: 'get',
         url: `/questions/${this.$route.params.id}`,
         headers: {token: localStorage.token}
       })
         .then(response => {
-          console.log('get data ok', response)
           this.blogTitle = response.data.data.title
           this.blogContent = response.data.data.content
-          console.log(this.question.content)
         })
         .catch(err => {
           console.log(err)

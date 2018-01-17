@@ -82,7 +82,6 @@ export default {
             }
           })
             .then(signUpResponse => {
-              console.log(signUpResponse)
               if (signUpResponse.status === 200) {
                 this.email = null
                 this.password = null

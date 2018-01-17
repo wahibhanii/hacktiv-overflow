@@ -60,7 +60,6 @@ export default {
   methods: {
     login () {
       if (this.valid) {
-        console.log('Loggin in', this.email, this.password)
         this.$axios({
           method: 'post',
           url: `/users/login`,
@@ -79,7 +78,6 @@ export default {
               this.$store.state.isLoggedIn = true
               this.$store.state.loginDialog = false
             } else if (loginResponse.status === 202) {
-              console.log(loginResponse)
               this.failMessage = loginResponse.data.message
               this.email = null
               this.password = null

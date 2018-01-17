@@ -39,15 +39,12 @@ export default {
       this.$router.push({name: 'QuestionDetail', params: { id: this.question._id }})
     },
     deleteQuestion () {
-      console.log('deleting question')
       this.$axios({
         method: 'delete',
         url: `/questions/${this.id}`,
         headers: {token: localStorage.token}
       })
         .then(response => {
-          console.log('get data ok', response)
-          console.log(this.question.content)
           this.$store.commit('getAllQuestions')
           this.$router.push({name: 'AllEntries'})
         })

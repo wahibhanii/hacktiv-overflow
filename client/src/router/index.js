@@ -22,6 +22,7 @@ const EditQuestion = () => import(/* webpackChunkName: "group-superlate" */ '@/c
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',

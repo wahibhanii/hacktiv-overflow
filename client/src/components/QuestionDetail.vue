@@ -96,16 +96,13 @@ export default {
   props: ['id'],
   methods: {
     getQuestion () {
-      console.log('getting question . . .')
       this.$axios({
         method: 'get',
         url: `/questions/${this.id}`,
         headers: {token: localStorage.token}
       })
         .then(response => {
-          console.log('get data ok', response)
           this.question = response.data.data
-          console.log(this.question.content)
         })
         .catch(err => {
           console.log(err)
@@ -115,15 +112,12 @@ export default {
       this.$router.push({name: 'EditQuestion', params: {id: this.question._id}})
     },
     deleteQuestion () {
-      console.log('deleting question')
       this.$axios({
         method: 'delete',
         url: `/questions/${this.id}`,
         headers: {token: localStorage.token}
       })
         .then(response => {
-          console.log('get data ok', response)
-          console.log(this.question.content)
           this.$store.commit('getAllQuestions')
           this.$router.push({name: 'AllEntries'})
         })
@@ -132,7 +126,6 @@ export default {
         })
     },
     upvoteQuestion () {
-      console.log('upvoting answer')
       this.$axios({
         method: 'put',
         url: `/questions/${this.question._id}/upvote`,
@@ -141,7 +134,6 @@ export default {
         }
       })
         .then(response => {
-          console.log('Upvoted ', response)
           this.getQuestion()
         })
         .catch(err => {
@@ -158,7 +150,6 @@ export default {
         }
       })
         .then(response => {
-          console.log('Downvoted ', response)
           this.getQuestion()
         })
         .catch(err => {
@@ -174,7 +165,6 @@ export default {
     paragraph () {
       let arrParagraph = this.question.content
       arrParagraph = arrParagraph.split(`\n`)
-      console.log(arrParagraph)
       return arrParagraph
     },
     isUserAuth () {

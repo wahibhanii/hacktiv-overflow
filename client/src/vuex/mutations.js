@@ -5,7 +5,6 @@ const baseURL = 'https://api.hackflow.wahibhanii.xyz'
 const mutations = {
 
   setLoginStatus () {
-    console.log('login status')
     if (localStorage.token !== undefined) {
       this.state.isLoggedIn = true
     } else {
@@ -28,14 +27,12 @@ const mutations = {
       //   console.log(err)
       // })
     } else {
-      console.log('no search')
       axios({
         method: 'get',
         url: `${baseURL}/questions`,
         headers: {token: localStorage.token}
       })
         .then(response => {
-          console.log('get data ok')
           this.state.allQuestions = response.data.data
         })
         .catch(err => {

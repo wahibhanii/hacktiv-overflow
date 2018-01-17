@@ -50,7 +50,6 @@ export default {
   },
   methods: {
     postBlog () {
-      console.log('posting blog')
       this.$axios({
         method: 'post',
         url: `/questions/`,
@@ -63,7 +62,6 @@ export default {
         }
       })
         .then(response => {
-          console.log(response)
           this.blogContent = null
           this.blogTitle = null
           this.$store.commit('getAllQuestions')

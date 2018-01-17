@@ -13,7 +13,6 @@
             >
             </v-text-field>
           </v-layout>
-          
         </v-form>
         <v-layout row justify-center >
           <v-btn color="orange lighten-1" large dark @click="postAnswer">
@@ -35,7 +34,6 @@ export default {
   ],
   methods: {
     postAnswer () {
-      console.log('posting answer')
       this.$axios({
         method: 'post',
         url: `/answers/`,
@@ -48,7 +46,6 @@ export default {
         }
       })
         .then(response => {
-          console.log(response)
           this.answerContent = null
           this.$emit('postAnswer')
         })

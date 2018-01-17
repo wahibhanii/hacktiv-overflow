@@ -36,7 +36,6 @@ export default {
   props: ['answer', 'questionId'],
   methods: {
     deleteAnswer () {
-      console.log('deleting answer')
       this.$axios({
         method: 'delete',
         url: `/answers/${this.answer._id}`,
@@ -48,7 +47,6 @@ export default {
         }
       })
         .then(deleteResponse => {
-          console.log(deleteResponse)
           this.answerContent = null
           this.$emit('deleteAnswer')
         })
@@ -57,7 +55,6 @@ export default {
         })
     },
     upvoteAnswer () {
-      console.log('upvoting answer')
       this.$axios({
         method: 'put',
         url: `/answers/${this.answer._id}/upvote`,
@@ -66,7 +63,6 @@ export default {
         }
       })
         .then(response => {
-          console.log('Upvoted ', response)
           this.$emit('upvoteAnswer')
         })
         .catch(err => {
@@ -83,7 +79,6 @@ export default {
         }
       })
         .then(response => {
-          console.log('Downvoted ', response)
           this.$emit('downvoteAnswer')
         })
         .catch(err => {
