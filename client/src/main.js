@@ -9,7 +9,7 @@ import store from './vuex/index'
 import 'vuetify/dist/vuetify.css'
 
 Vue.config.productionTip = false
-let baseURL = 'http://54.147.77.204'
+let baseURL = 'https://api.hackflow.wahibhanii.xyz'
 Vue.use(Vuetify)
 Vue.use(router)
 Vue.prototype.$axios = axios.create({

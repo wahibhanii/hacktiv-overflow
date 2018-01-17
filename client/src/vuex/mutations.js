@@ -1,6 +1,6 @@
 // import jwt from 'jsonwebtoken'
 import axios from 'axios'
-const baseURL = 'http://54.147.77.204'
+const baseURL = 'https://api.hackflow.wahibhanii.xyz'
 
 const mutations = {
 
